@@ -4,7 +4,35 @@
 // Handles: base URL, JWT injection, error normalisation, retries
 // ─────────────────────────────────────────────────────────────
 
-const BASE_URL = "http://localhost:5000/api";
+function resolveBaseUrl() {
+  if (typeof window === "undefined") {
+    return "http://localhost:5000/api";
+  }
+
+  const fromWindow = window.__DWM_API_BASE_URL__;
+  if (typeof fromWindow === "string" && fromWindow.trim()) {
+    return fromWindow.trim().replace(/\/$/, "");
+  }
+
+  const fromMeta = document
+    .querySelector('meta[name="dwm-api-base-url"]')
+    ?.getAttribute("content");
+  if (typeof fromMeta === "string" && fromMeta.trim()) {
+    return fromMeta.trim().replace(/\/$/, "");
+  }
+
+  const fromStorage = localStorage.getItem("dwm_api_base_url");
+  if (typeof fromStorage === "string" && fromStorage.trim()) {
+    return fromStorage.trim().replace(/\/$/, "");
+  }
+
+  const host = window.location.hostname.toLowerCase();
+  const isLocal = host === "localhost" || host === "127.0.0.1";
+
+  return isLocal ? "http://localhost:5000/api" : "/api";
+}
+
+const BASE_URL = resolveBaseUrl();
 
 // ── Token helpers (imported inline to avoid circular deps) ──
 
