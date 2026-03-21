@@ -1,0 +1,161 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CUSTOMER
+  CHEF
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PREPARING
+  DELIVERED
+  CANCELLED
+}
+
+enum HealthCondition {
+  DIABETES
+  HYPERTENSION
+  PREGNANCY
+  NONE
+}
+
+enum ChefStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id            String        @id @default(uuid())
+  name          String
+  email         String        @unique
+  password      String
+  role          Role          @default(CUSTOMER)
+  phone         String?
+  country       String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  healthProfile HealthProfile?
+  orders        Order[]
+  chef          Chef?
+}
+
+model HealthProfile {
+  id              String          @id @default(uuid())
+  userId          String          @unique
+  condition       HealthCondition @default(NONE)
+  allergies       String[]
+  maxCalories     Int?
+  maxSodium       Int?
+  maxSugar        Int?
+  isPregnant      Boolean         @default(false)
+  trimester       Int?
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  user            User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Chef {
+  id          String      @id @default(uuid())
+  userId      String      @unique
+  bio         String?
+  specialty   String?
+  country     String?
+  status      ChefStatus  @default(PENDING)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meals       Meal[]
+}
+
+model Meal {
+  id          String      @id @default(uuid())
+  name        String
+  description String?
+  price       Decimal     @db.Decimal(10, 2)
+  imageUrl    String?
+  category    String
+  country     String
+  isAvailable Boolean     @default(true)
+  isApproved  Boolean     @default(false)
+  chefId      String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  chef        Chef?       @relation(fields: [chefId], references: [id])
+  nutrition   Nutrition?
+  mealTags    MealTag[]
+  orderItems  OrderItem[]
+}
+
+model Nutrition {
+  id          String   @id @default(uuid())
+  mealId      String   @unique
+  calories    Int
+  protein     Decimal  @db.Decimal(6, 2)
+  carbs       Decimal  @db.Decimal(6, 2)
+  fat         Decimal  @db.Decimal(6, 2)
+  fiber       Decimal  @db.Decimal(6, 2)
+  sugar       Decimal  @db.Decimal(6, 2)
+  sodium      Decimal  @db.Decimal(6, 2)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  meal        Meal     @relation(fields: [mealId], references: [id], onDelete: Cascade)
+}
+
+model Tag {
+  id       String    @id @default(uuid())
+  name     String    @unique
+  mealTags MealTag[]
+}
+
+model MealTag {
+  mealId String
+  tagId  String
+
+  meal   Meal   @relation(fields: [mealId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([mealId, tagId])
+}
+
+model Order {
+  id          String      @id @default(uuid())
+  userId      String
+  status      OrderStatus @default(PENDING)
+  totalPrice  Decimal     @db.Decimal(10, 2)
+  notes       String?
+  address     String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items       OrderItem[]
+}
+
+model OrderItem {
+  id        String   @id @default(uuid())
+  orderId   String
+  mealId    String
+  quantity  Int      @default(1)
+  unitPrice Decimal  @db.Decimal(10, 2)
+  createdAt DateTime @default(now())
+
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  meal      Meal     @relation(fields: [mealId], references: [id])
+}
