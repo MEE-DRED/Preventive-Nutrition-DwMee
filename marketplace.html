@@ -203,22 +203,6 @@
   </div>
 </div>
 
-<script>
-  (function initMarketplaceIntegrationMode() {
-    const host = window.location.hostname.toLowerCase();
-    const isLocalDevHost = host === "localhost" || host === "127.0.0.1";
-
-    // Static marketplace data is used outside local development.
-    window.__DWM_INTEGRATION_MARKETPLACE__ = isLocalDevHost;
-
-    if (window.__DWM_INTEGRATION_MARKETPLACE__) {
-      const moduleScript = document.createElement("script");
-      moduleScript.type = "module";
-      moduleScript.src = "dine-with-mee-integration/dine-with-mee-frontend/src/main.js";
-      document.body.appendChild(moduleScript);
-    }
-  })();
-</script>
 <script src="script.js"></script>
 </body>
 </html>
