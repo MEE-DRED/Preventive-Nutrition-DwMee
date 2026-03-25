@@ -1,11 +1,11 @@
-# 🌍 Dine With Mee — Backend API
+# Dine With Mee: Backend API
 
 > Uber Eats + MyFitnessPal + Teladoc for Africa  
 > A nutrition-driven African food marketplace for NCDs, maternal health & smart meal recommendations.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 dine-with-mee-backend/
@@ -45,7 +45,7 @@ dine-with-mee-backend/
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### 1. Install dependencies
 ```bash
@@ -75,10 +75,10 @@ npm run db:migrate
 npm run db:seed
 ```
 This seeds:
-- ✅ Admin user (`admin@dinewithmee.com` / `Admin@123`)
-- ✅ Chef user (`mama.put@dinewithmee.com` / `Chef@123`)
-- ✅ 7 African meals (Jollof Rice, Egusi Soup, Agatogo, Ugali, Thieboudienne, Matoke, Grilled Tilapia)
-- ✅ Health tags (Diabetes-Friendly, Low Sodium, Pregnancy-Safe, etc.)
+-  Admin user (`admin@dinewithmee.com` / `Admin@123`)
+-  Chef user (`mama.put@dinewithmee.com` / `Chef@123`)
+-  7 African meals (Jollof Rice, Egusi Soup, Agatogo, Ugali, Thieboudienne, Matoke, Grilled Tilapia)
+-  Health tags (Diabetes-Friendly, Low Sodium, Pregnancy-Safe, etc.)
 
 ### 5. Start the server
 ```bash
@@ -93,7 +93,7 @@ Server runs at: `http://localhost:5000`
 
 ---
 
-## 🔗 API Endpoints
+## API Endpoints
 
 ### Auth — `/api/auth`
 | Method | Endpoint | Access | Description |
@@ -145,7 +145,7 @@ Server runs at: `http://localhost:5000`
 
 ---
 
-## 🧠 Health Filter Engine
+## Health Filter Engine
 
 `GET /api/meals/personalized` returns meals filtered by the user's health condition:
 
@@ -163,7 +163,7 @@ Response includes:
 
 ---
 
-## 🔐 Roles
+## Roles
 
 | Role | Permissions |
 |------|------------|
@@ -173,7 +173,7 @@ Response includes:
 
 ---
 
-## 🗄️ Database Models
+## Database Models
 
 - **User** — core auth entity with roles
 - **HealthProfile** — condition, allergies, thresholds
@@ -186,7 +186,7 @@ Response includes:
 
 ---
 
-## 🌍 Sample African Meals Included
+## Sample African Meals Included
 
 | Meal | Country | Special Tags |
 |------|---------|-------------|
@@ -200,7 +200,7 @@ Response includes:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Runtime**: Node.js 18+
 - **Framework**: Express.js
@@ -211,7 +211,7 @@ Response includes:
 
 ---
 
-## 📦 Useful Commands
+## Useful Commands
 
 ```bash
 npm run db:studio     # Open Prisma Studio (visual DB browser)
