@@ -93,7 +93,7 @@ MEALS.HTML  ―  Meals listing page
   border:1px solid rgba(200,168,75,0.3);
   color:#c8a84b;padding:0.5rem 1.25rem;
   border-radius:20px;font-size:0.85rem;cursor:pointer;
-">🧬 My Recommendations</button>
+"> My Recommendations</button>
 
 <!-- Meals grid -->
 <div id="meals-grid" style="
@@ -115,7 +115,7 @@ LOGIN.HTML  ―  Login page
   <div>
     <label>Password</label>
     <input id="login-password" type="password" placeholder="••••••••" required />
-    <button type="button" data-toggle-password data-target="login-password">👁️</button>
+    <button type="button" data-toggle-password data-target="login-password"></button>
   </div>
   <div id="login-error" style="display:none;"></div>
   <button type="submit" id="login-btn">Sign In</button>
@@ -139,7 +139,7 @@ REGISTER.HTML  ―  Registration page
   <div>
     <label>Password *</label>
     <input id="register-password" type="password" placeholder="Min 6 characters" required />
-    <button type="button" data-toggle-password data-target="register-password">👁️</button>
+    <button type="button" data-toggle-password data-target="register-password"></button>
     <small id="password-strength"></small>
   </div>
   <div>
