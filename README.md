@@ -204,7 +204,7 @@ Click "Open with Live Server" (if using VS Code)
 
 # Live Demo
 
-https://your-project-link.vercel.app
+https://preventive-nutrition-dw-mee.vercel.app/
 
 # Future Improvements
 
