@@ -1,4 +1,4 @@
-# 🚀 Quick Start Testing Guide
+# Quick Start Testing Guide
 
 ## Step 1: Open Test Dashboard
 
@@ -10,7 +10,7 @@ This opens a visual test runner with real-time results and logging.
 
 Inside the dashboard, you'll see buttons:
 
-### 🔴 Run All Tests (Recommended First)
+### Run All Tests (Recommended First)
 
 - Tests guard flags on current page
 - Verifies DOM elements exist
@@ -20,16 +20,16 @@ Inside the dashboard, you'll see buttons:
 
 **Expected Results**:
 
-- ✅ 8-10 tests should PASS (frontend integration is complete)
-- ⚠️ 1-2 tests may show PENDING (database not configured - normal)
-- ❌ 0 tests should FAIL (if any fail, we'll debug together)
+- 8-10 tests should PASS (frontend integration is complete)
+- 1-2 tests may show PENDING (database not configured - normal)
+   0 tests should FAIL (if any fail, we'll debug together)
 
-### 📄 Test Current Page
+### Test Current Page
 
 - Validates page-specific integration flags
 - Checks page's custom form fields
 
-### 🔌 Test Backend
+###  Test Backend
 
 - Attempts health check connection
 - If database is set up: Will return more detailed response
@@ -37,21 +37,21 @@ Inside the dashboard, you'll see buttons:
 
 ## Step 3: Interpret Results
 
-### Green ✅ (Passed)
+### Green (Passed)
 
 - Module loaded correctly
 - Selector found
 - Storage working
 - Backend responding
 
-### Red ❌ (Failed)
+### Red (Failed)
 
 - Missing DOM element
 - Module loading error
 - Integration flag not set
 - Report this to debug
 
-### Yellow ⚠️ (Warning)
+### Yellow (Warning)
 
 - Backend not available (database not configured - normal for now)
 - Non-critical feature degraded
@@ -134,7 +134,7 @@ Look for failed requests (red indicators):
 4. Report file names
 ```
 
-## When Everything Passes ✅
+## When Everything Passes 
 
 If all frontend tests pass:
 
